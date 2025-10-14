@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0d0d0d;
+  --color-card: #1a1a1a;
+  --color-foreground: #f0f0f0;
+  --color-muted: #a1a1aa;
+  --color-accent: #ff6b00;
+  --color-border: #1e293b;
+  --color-grid: #1a1a1a;
+  --color-section-bg: #1a1a1a;
+}
+
+html.light {
+  --color-background: #f0f0f0;
+  --color-card: #ffffff;
+  --color-foreground: #0d0d0d;
+  --color-muted: #64748b;
+  --color-accent: #ff6b00;
+  --color-border: #e2e8f0;
+  --color-grid: #cbd5e1;
+  --color-section-bg: #f8fafc;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Fondo hexágonos */
+.hexagon-item::before {
+  background-color: var(--color-grid);
+}
+
+.hexagon-item::after {
+  background-color: var(--color-background);
+  transition: background-color 0.15s ease;
+}
+
+.hexagon-item:hover::after {
+  background-color: var(--color-card);
+}
+
+.hexagon-background-container {
+  background-color: var(--color-background);
+}
+
+html.light .hexagon-item {
+  display: none;
+}
+
+body.overflow-hidden {
+  overflow: hidden;
+}
+
+.flip-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-accent) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--color-accent) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.swiper-slide.swiper-slide-active {
+  border-color: var(--color-accent);
+  transition: border-color 0.3s ease;
+}
