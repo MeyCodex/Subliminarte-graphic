@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
     avatar: "C3",
   },
   {
-    text: "¡Las tazas personalizadas fueron el regalo perfecto! La impresión es de alta calidad y muy duradera. Volveré a comprar.",
+    text: "¡Las tazas personalizadas fueron el regalo perfecto! La impresión es de alta calidad y muy duradera.",
     author: "Cliente 4",
     role: "Regalos personalizados",
     avatar: "C4",

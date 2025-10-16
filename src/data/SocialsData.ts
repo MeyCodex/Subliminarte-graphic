@@ -16,7 +16,7 @@ export const socials: Social[] = [
   {
     name: "WhatsApp",
     icon: FaWhatsapp,
-    href: "https://wa.me/569XXXXXXXX",
+    href: "https://api.whatsapp.com/send?phone=56932844503",
   },
   {
     name: "TikTok",

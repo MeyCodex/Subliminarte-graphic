@@ -39,11 +39,11 @@ export const content = {
     title: "¿Dónde Encontrarnos?",
     hoursTitle: "Horario",
     hours: [
-      { day: "Lunes a Viernes:", time: "10:00 - 18:00" },
+      { day: "Lunes a Viernes:", time: "10:00 - 19:30" },
       { day: "Sábados, Domingos y Festivos:", time: "CERRADO" },
     ],
     addressTitle: "Dirección",
-    address: "Calle Ficticia #123, Calle ejemplo, Vicuña, Chile.",
+    address: "Calle Mirta López Guerrero #04, Hierro Viejo, Vicuña, Chile.",
   },
   footer: {
     copyright: "Subliminarte Graphic.",

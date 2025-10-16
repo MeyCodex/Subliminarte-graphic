@@ -1,8 +1,21 @@
-import img1 from "@/assets/gallery/EstampadoPolera.jpg";
-import img2 from "@/assets/gallery/EstampadoGorro.jpg";
-import img3 from "@/assets/gallery/ExpositorDos.jpg";
-import img4 from "@/assets/gallery/Viseras.jpg";
-import img5 from "@/assets/gallery/Tazas.jpg";
-import img6 from "@/assets/gallery/Troquelados.jpg";
+import imgUno from "@assets/gallery/ImgUno.webp";
+import imgDos from "@assets/gallery/ImgDos.webp";
+import imgTres from "@assets/gallery/ImgTres.webp";
+import imgCuatro from "@assets/gallery/ImgCuatro.webp";
+import imgCinco from "@assets/gallery/ImgCinco.webp";
+import imgSeis from "@assets/gallery/ImgSeis.webp";
+import imgSiete from "@assets/gallery/ImgSiete.webp";
+import imgOcho from "@assets/gallery/ImgOcho.webp";
+import imgNueve from "@assets/gallery/ImgNueve.webp";
 
-export const galleryItems: string[] = [img1, img3, img5, img6, img4, img2];
+export const galleryItems: string[] = [
+  imgUno,
+  imgDos,
+  imgTres,
+  imgCuatro,
+  imgCinco,
+  imgSeis,
+  imgSiete,
+  imgOcho,
+  imgNueve,
+];
