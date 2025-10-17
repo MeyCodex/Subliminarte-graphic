@@ -4,6 +4,10 @@ import { motion, type Variants } from "framer-motion";
 import { FiArrowDown } from "react-icons/fi";
 import { content } from "@/data/content";
 
+type Props = {
+  navigate: (page: "landing" | "catalog") => void;
+};
+
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -60,7 +64,7 @@ const wordVariants: Variants = {
   },
 };
 
-function Hero() {
+function Hero({ navigate }: Props) {
   return (
     <section
       id="inicio"
@@ -104,16 +108,32 @@ function Hero() {
               {content.hero.subtitle}
             </motion.p>
             <motion.div
+              className="mt-8 flex items-center justify-center lg:justify-start gap-4"
               variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              <a
+              {/* Botón Principal (sin cambios de funcionalidad) */}
+              <motion.a
                 href="#servicios"
-                className="mt-8 inline-block bg-accent text-card font-bold py-3 px-8 rounded-lg"
+                className="inline-block bg-accent text-card font-bold py-3 px-6 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 {content.hero.cta}
-              </a>
+              </motion.a>
+
+              {/* Botón Secundario (NUEVO) */}
+              <motion.button
+                onClick={() => navigate("catalog")}
+                className="inline-block bg-transparent border-2 border-accent text-accent font-bold py-3 px-6 rounded-lg cursor-pointer"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "var(--color-accent)",
+                  color: "var(--color-card)",
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                Ver catálogo
+              </motion.button>
             </motion.div>
           </div>
 

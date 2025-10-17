@@ -3,8 +3,14 @@ import { services } from "@/data/ServicesData";
 import ServiceCard from "@/components/ServiceCard";
 import Section from "@/components/Section";
 import { content } from "@/data/content";
+import { useState } from "react";
 
 function Services() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const handleCardFlip = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
     <Section id="servicios" className="bg-[var(--color-background)]">
       <motion.div
@@ -28,7 +34,12 @@ function Services() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         {services.map((service, index) => (
-          <ServiceCard key={index} service={service} />
+          <ServiceCard
+            key={index}
+            service={service}
+            isFlipped={activeIndex === index}
+            onFlip={() => handleCardFlip(index)}
+          />
         ))}
       </motion.div>
     </Section>

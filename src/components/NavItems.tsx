@@ -1,10 +1,28 @@
 import { navItems, type NavItem } from "@/data/NavData";
 
+type Page = "landing" | "catalog";
+type NavigateFn = (page: Page) => void;
+
 type Props = {
-  onItemClick?: () => void;
+  navigate: NavigateFn;
+  currentPage: Page;
 };
 
-function NavItems({ onItemClick }: Props) {
+function NavItems({ navigate, currentPage }: Props) {
+  const handleLinkClick = (e: React.MouseEvent, item: NavItem) => {
+    e.preventDefault();
+    if (currentPage !== "landing") {
+      navigate("landing");
+      setTimeout(() => {
+        const section = document.querySelector(item.href);
+        section?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const section = document.querySelector(item.href);
+      section?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <nav className="hidden lg:flex space-x-6">
       {navItems
@@ -15,8 +33,8 @@ function NavItems({ onItemClick }: Props) {
           <a
             key={item.name}
             href={item.href}
-            onClick={onItemClick}
-            className="text-foreground hover:text-accent transition duration-200 font-medium tracking-wide"
+            onClick={(e) => handleLinkClick(e, item)}
+            className="text-foreground hover:text-accent transition duration-200 font-medium tracking-wide cursor-pointer"
           >
             {item.name}
           </a>
