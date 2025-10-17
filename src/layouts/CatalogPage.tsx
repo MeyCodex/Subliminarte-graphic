@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import { products, type CatalogProduct } from "@/data/CatalogData";
 import Section from "@/components/Section";
+import { content } from "@/data/content";
 
 function CatalogPage() {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -11,15 +12,7 @@ function CatalogPage() {
   const [selectedProduct, setSelectedProduct] = useState<CatalogProduct | null>(
     null
   );
-
-  const categories = [
-    { label: "Todos", value: "all" },
-    { label: "Textil & Estampados", value: "textil" },
-    { label: "Tazas & Sublimación", value: "sublimacion" },
-    { label: "Gráfica Vehicular", value: "grafica_vehicular" },
-    { label: "Adhesivos", value: "adhesivos" },
-  ];
-
+  const categories = content.catalog.categories;
   const filteredProducts = products.filter((product) =>
     selectedCategory === "all" ? true : product.category === selectedCategory
   );
@@ -28,24 +21,27 @@ function CatalogPage() {
     setSelectedProduct(product);
     document.body.classList.add("overflow-hidden");
   };
-
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedProduct(null);
     document.body.classList.remove("overflow-hidden");
-  };
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      closeModal();
+    };
+    if (selectedProduct) {
+      window.history.pushState(null, "", window.location.pathname);
+      window.addEventListener("popstate", handlePopState);
+    }
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [selectedProduct, closeModal]);
 
   return (
-    <Section id="catalogo" className="bg-[var(--color-background)]">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-black uppercase tracking-wider text-foreground mb-2">
-          Catálogo
-        </h1>
-        <p className="text-lg text-muted">
-          Explora las posibilidades de personalización.
-        </p>
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
+    <Section id="catalogo" className="bg-[var(--color-background)] !pt-8 pb-18">
+      <div className="flex gap-4 mb-8 lg:mb-12 overflow-x-auto whitespace-nowrap lg:flex-wrap lg:justify-center">
         {categories.map((cat) => (
           <button
             key={cat.value}
@@ -64,7 +60,6 @@ function CatalogPage() {
           </button>
         ))}
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <ProductCard
@@ -74,9 +69,13 @@ function CatalogPage() {
           />
         ))}
       </div>
-
       {selectedProduct && (
-        <ProductModal product={selectedProduct} onClose={closeModal} />
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => {
+            window.history.back();
+          }}
+        />
       )}
     </Section>
   );

@@ -111,7 +111,6 @@ function Hero({ navigate }: Props) {
               className="mt-8 flex items-center justify-center lg:justify-start gap-4"
               variants={itemVariants}
             >
-              {/* Botón Principal (sin cambios de funcionalidad) */}
               <motion.a
                 href="#servicios"
                 className="inline-block bg-accent text-card font-bold py-3 px-6 rounded-lg"
@@ -120,8 +119,6 @@ function Hero({ navigate }: Props) {
               >
                 {content.hero.cta}
               </motion.a>
-
-              {/* Botón Secundario (NUEVO) */}
               <motion.button
                 onClick={() => navigate("catalog")}
                 className="inline-block bg-transparent border-2 border-accent text-accent font-bold py-3 px-6 rounded-lg cursor-pointer"
@@ -159,7 +156,6 @@ function Hero({ navigate }: Props) {
           </motion.div>
         </motion.div>
       </div>
-
       {/* Flecha */}
       <motion.div
         className="absolute bottom-20 left-1/2 -translate-x-1/2"

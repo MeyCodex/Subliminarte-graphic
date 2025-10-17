@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "@/layouts/Header";
 import Hero from "@/layouts/Hero";
 import Services from "@/layouts/Services";
@@ -15,10 +15,31 @@ type Page = "landing" | "catalog";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>("landing");
-  const navigate = (page: Page) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const navigate = useCallback(
+    (page: Page) => {
+      if (page === currentPage) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      page === "catalog" &&
+        window.history.pushState({ page: "catalog" }, "", "/catalogo");
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    [currentPage]
+  );
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (!event.state || event.state.page !== "catalog") {
+        setCurrentPage("landing");
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   const landingContent = (
     <>
@@ -32,15 +53,17 @@ function App() {
   );
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header navigate={navigate} currentPage={currentPage} />
       <SocialsFloat />
-      <main>
-        {currentPage === "landing" ? landingContent : <CatalogPage />}
+      <main className="flex flex-col flex-grow">
+        <div className="flex-grow">
+          {currentPage === "landing" ? landingContent : <CatalogPage />}
+        </div>
       </main>
       <Footer />
       <Analytics />
-    </>
+    </div>
   );
 }
 

@@ -49,4 +49,20 @@ export const content = {
     copyright: "Subliminarte Graphic.",
     developedBy: "Desarrollado por",
   },
+  catalog: {
+    subtitle: "Explora las posibilidades de personalización.",
+    categories: [
+      { label: "Todos", value: "all" },
+      { label: "Textil & estampados", value: "textil" },
+      { label: "Tazas & sublimación", value: "sublimación" },
+      { label: "Gráfica vehicular", value: "grafica_vehicular" },
+      { label: "Adhesivos & publicidad", value: "adhesivos" },
+    ],
+    cardCta: "Ver y cotizar",
+    modal: {
+      priceLabel: "Precio estimado",
+      fixedPrice: "Precio fijo",
+      cta: "Cotizar por WhatsApp",
+    },
+  },
 };

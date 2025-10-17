@@ -1,21 +1,22 @@
 import { motion } from "framer-motion";
 import { type CatalogProduct } from "@/data/CatalogData";
+import { content } from "@/data/content";
 
 type Props = {
   product: CatalogProduct;
   onOpenModal: (product: CatalogProduct) => void;
 };
 
-function ProductCard({ product, onOpenModal }: Props) {
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.4 },
-    },
-  };
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4 },
+  },
+};
 
+function ProductCard({ product, onOpenModal }: Props) {
   return (
     <motion.div
       className="bg-card rounded-lg overflow-hidden border border-border/50 cursor-pointer group flex flex-col"
@@ -35,7 +36,7 @@ function ProductCard({ product, onOpenModal }: Props) {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <span className="absolute top-2 right-2 bg-accent text-card text-xs font-bold px-3 py-1 rounded-full">
-          {product.priceEstimate}
+          {product.price}
         </span>
       </div>
 
@@ -47,8 +48,8 @@ function ProductCard({ product, onOpenModal }: Props) {
       </div>
 
       <div className="p-4 pt-0">
-        <button className="w-full bg-accent text-card font-semibold py-2 rounded-lg hover:opacity-90 transition-opacity">
-          Ver y cotizar
+        <button className="w-full bg-accent text-card font-semibold py-2 rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
+          {content.catalog.cardCta}
         </button>
       </div>
     </motion.div>

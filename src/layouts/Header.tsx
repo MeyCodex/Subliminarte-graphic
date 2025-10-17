@@ -34,7 +34,7 @@ function Header({ navigate, currentPage }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           <button
             onClick={() => navigate("landing")}
-            className="flex items-center space-x-2 flex-shrink-0"
+            className="flex items-center space-x-2 flex-shrink-0 cursor-pointer"
           >
             <span className="text-lg sm:text-2xl font-black tracking-widest text-foreground uppercase">
               {content.brand.partOne}{" "}
