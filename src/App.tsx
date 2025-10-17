@@ -7,6 +7,7 @@ import Footer from "@/layouts/Footer";
 import About from "@/layouts/About";
 import SocialsFloat from "@/components/SocialsFloat";
 import Testimonials from "./layouts/Testimonials";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Location />
         <Footer />
       </main>
+      <Analytics />
     </>
   );
 }
