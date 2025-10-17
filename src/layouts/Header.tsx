@@ -5,7 +5,15 @@ import { FiMenu } from "react-icons/fi";
 import { socials } from "@/data/SocialsData";
 import { content } from "@/data/content";
 
-function Header() {
+type Page = "landing" | "catalog";
+type NavigateFn = (page: Page) => void;
+
+type Props = {
+  navigate: NavigateFn;
+  currentPage: Page;
+};
+
+function Header({ navigate, currentPage }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const whatsappLink = socials.find((social) => social.name === "WhatsApp");
@@ -24,19 +32,17 @@ function Header() {
     <>
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm shadow-xl border-b border-accent/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-          <a
-            href="#inicio"
-            className="flex items-center space-x-2 flex-shrink-0"
-            onClick={closeMenu}
+          <button
+            onClick={() => navigate("landing")}
+            className="flex items-center space-x-2 flex-shrink-0 cursor-pointer"
           >
-            <span className="text-lg sm:text-2xl font-black tracking-widest text-foreground">
+            <span className="text-lg sm:text-2xl font-black tracking-widest text-foreground uppercase">
               {content.brand.partOne}{" "}
               <span className="text-accent">{content.brand.partTwo}</span>
             </span>
-          </a>
+          </button>
           <div className="flex items-center space-x-3 sm:space-x-4">
-            <NavItems />
-
+            <NavItems navigate={navigate} currentPage={currentPage} />
             {whatsappLink && (
               <a
                 href={whatsappLink.href}
@@ -59,7 +65,12 @@ function Header() {
         </div>
       </header>
 
-      <MobileMenu isOpen={isMenuOpen} closeMenu={closeMenu} />
+      <MobileMenu
+        isOpen={isMenuOpen}
+        closeMenu={closeMenu}
+        navigate={navigate}
+        currentPage={currentPage}
+      />
     </>
   );
 }

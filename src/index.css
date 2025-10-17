@@ -77,3 +77,11 @@ html {
   border-color: var(--color-accent);
   transition: border-color 0.3s ease;
 }
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

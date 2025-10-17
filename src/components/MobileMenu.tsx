@@ -1,4 +1,4 @@
-import { navItems } from "@/data/NavData";
+import { navItems, type NavItem } from "@/data/NavData";
 import { socials } from "@/data/SocialsData";
 import {
   motion,
@@ -9,7 +9,15 @@ import {
 import { FiX } from "react-icons/fi";
 import { content } from "@/data/content";
 
-type Props = { isOpen: boolean; closeMenu: () => void };
+type Page = "landing" | "catalog";
+type NavigateFn = (page: Page) => void;
+
+type Props = {
+  isOpen: boolean;
+  closeMenu: () => void;
+  navigate: NavigateFn;
+  currentPage: Page;
+};
 
 const menuVariants: Variants = {
   closed: {
@@ -37,7 +45,26 @@ const itemVariants: Variants = {
   open: { x: 0, opacity: 1 },
 };
 
-function MobileMenu({ isOpen, closeMenu }: Props) {
+function MobileMenu({ isOpen, closeMenu, navigate, currentPage }: Props) {
+  const handleLinkClick = (e: React.MouseEvent, item: NavItem) => {
+    e.preventDefault();
+    if (item.isPageLink) {
+      navigate(item.page!);
+      closeMenu();
+    } else {
+      if (currentPage !== "landing") {
+        navigate("landing");
+        setTimeout(() => {
+          const section = document.querySelector(item.href);
+          section?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const section = document.querySelector(item.href);
+        section?.scrollIntoView({ behavior: "smooth" });
+      }
+      closeMenu();
+    }
+  };
   return (
     <AnimatePresence>
       {isOpen && (
@@ -68,7 +95,7 @@ function MobileMenu({ isOpen, closeMenu }: Props) {
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    onClick={closeMenu}
+                    onClick={(e) => handleLinkClick(e, item)}
                     variants={itemVariants}
                     className="text-2xl font-bold text-foreground hover:bg-muted/10 transition duration-200 py-4 w-full text-center border-b border-border/20"
                   >
