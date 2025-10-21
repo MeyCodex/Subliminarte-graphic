@@ -33,7 +33,7 @@ function Footer() {
           <p className="text-sm text-muted">
             {content.footer.developedBy}
             <a
-              href="#"
+              href="https://meycode-site.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground hover:text-accent transition-colors"
