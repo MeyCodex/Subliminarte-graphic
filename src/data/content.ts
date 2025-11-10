@@ -43,7 +43,7 @@ export const content = {
       { day: "Sábados, Domingos y Festivos:", time: "CERRADO" },
     ],
     addressTitle: "Dirección",
-    address: "Calle Mirta López Guerrero #04, Hierro Viejo, Vicuña, Chile.",
+    address: "Calle costanera 309-b, Calingasta, Vicuña.",
   },
   footer: {
     copyright: "Subliminarte Graphic.",
