@@ -43,7 +43,7 @@ export const content = {
       { day: "Sábados, Domingos y Festivos:", time: "CERRADO" },
     ],
     addressTitle: "Dirección",
-    address: "Calle costanera 309-b, Calingasta, Vicuña.",
+    address: "Calle Costanera 309-b, Calingasta, Vicuña.",
   },
   footer: {
     copyright: "Subliminarte Graphic.",
